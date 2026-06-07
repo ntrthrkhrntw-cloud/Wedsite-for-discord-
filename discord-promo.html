@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>𐙚˚࿔ Home𝜗𝜚˚⋆</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Sans+Thai:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --moss: #4a6741;
+    --sage: #7a9e6e;
+    --cream: #f5efe6;
+    --bark: #8b6f47;
+    --soil: #5c4033;
+    --leaf: #b8d4a8;
+    --mist: rgba(245, 239, 230, 0.85);
+  }
+
+  html, body {
+    height: 100%;
+    font-family: 'Noto Sans Thai', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ─── Background GIF ─── */
+  .bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+  }
+  .bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(30,45,25,0.25) 0%,
+      rgba(20,35,15,0.15) 40%,
+      rgba(15,25,10,0.45) 100%
+    );
+  }
+
+  /* ─── Noise overlay ─── */
+  .noise {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  /* ─── Main Layout ─── */
+  main {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    gap: 2rem;
+  }
+
+  /* ─── Floating leaves deco ─── */
+  .leaf-deco {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1;
+    font-size: 1.4rem;
+    opacity: 0;
+    animation: floatLeaf 12s ease-in-out infinite;
+  }
+  .leaf-deco:nth-child(1) { left: 5%; top: 20%; animation-delay: 0s; }
+  .leaf-deco:nth-child(2) { right: 8%; top: 35%; animation-delay: 3s; font-size: 1rem; }
+  .leaf-deco:nth-child(3) { left: 12%; bottom: 30%; animation-delay: 6s; font-size: 1.8rem; }
+  .leaf-deco:nth-child(4) { right: 5%; bottom: 20%; animation-delay: 9s; font-size: 1.1rem; }
+  @keyframes floatLeaf {
+    0%   { opacity: 0; transform: translateY(0) rotate(0deg); }
+    20%  { opacity: 0.6; }
+    80%  { opacity: 0.4; }
+    100% { opacity: 0; transform: translateY(-40px) rotate(25deg); }
+  }
+
+  /* ─── Header card ─── */
+  .header-card {
+    background: rgba(245,239,230,0.18);
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 28px;
+    padding: 2.4rem 3rem 2rem;
+    text-align: center;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 8px 48px rgba(20,40,15,0.25), inset 0 1px 0 rgba(255,255,255,0.3);
+    animation: fadeDown 0.9s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(122,158,110,0.3);
+    border: 1px solid rgba(122,158,110,0.5);
+    border-radius: 999px;
+    padding: 4px 14px;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #d4edbc;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  .badge::before { content: '🌿'; }
+
+  .server-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    color: #f0ece2;
+    line-height: 1.2;
+    text-shadow: 0 2px 20px rgba(20,40,10,0.4);
+    margin-bottom: 0.6rem;
+  }
+
+  .tagline {
+    font-size: 0.88rem;
+    color: rgba(240,236,226,0.75);
+    line-height: 1.7;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+  }
+
+  /* ─── Features row ─── */
+  .features {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 520px;
+    animation: fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.15s both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .feature-chip {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 16px;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.8rem;
+    color: rgba(240,236,226,0.9);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.25s, transform 0.2s;
+    cursor: default;
+  }
+  .feature-chip:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+  }
+
+  /* ─── Discord Join Button ─── */
+  .join-wrap {
+    animation: fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.3s both;
+  }
+
+  .discord-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(88,101,242,0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(150,160,255,0.35);
+    border-radius: 20px;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    color: #fff;
+    box-shadow: 0 4px 32px rgba(88,101,242,0.4), 0 1px 0 rgba(255,255,255,0.15) inset;
+    transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s, background 0.2s;
+    cursor: pointer;
+  }
+  .discord-btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 48px rgba(88,101,242,0.55), 0 1px 0 rgba(255,255,255,0.2) inset;
+    background: rgba(88,101,242,0.96);
+  }
+  .discord-btn:active {
+    transform: translateY(-1px) scale(0.99);
+  }
+
+  .discord-logo {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+  }
+
+  .btn-text-wrap { display: flex; flex-direction: column; line-height: 1.3; }
+  .btn-sub { font-size: 0.7rem; opacity: 0.75; letter-spacing: 0.06em; text-transform: uppercase; }
+  .btn-main { font-size: 1rem; font-weight: 600; letter-spacing: 0.01em; }
+
+  /* pulse ring */
+  .pulse-ring {
+    position: relative;
+  }
+  .pulse-ring::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 26px;
+    border: 2px solid rgba(88,101,242,0.5);
+    animation: pulse 2.5s ease-out infinite;
+  }
+  @keyframes pulse {
+    0%   { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.12); }
+  }
+
+  /* ─── Online dot ─── */
+  .online-indicator {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.75rem;
+    color: rgba(240,236,226,0.65);
+    animation: fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.45s both;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #57f287;
+    box-shadow: 0 0 8px #57f287;
+    animation: blink 2s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ─── Footer ─── */
+  footer {
+    position: fixed;
+    bottom: 1.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.68rem;
+    color: rgba(240,236,226,0.35);
+    letter-spacing: 0.06em;
+    z-index: 2;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 480px) {
+    .header-card { padding: 1.8rem 1.6rem 1.6rem; border-radius: 22px; }
+    .discord-btn { padding: 0.9rem 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Background GIF -->
+<div class="bg">
+  <img src="https://cdn.discordapp.com/attachments/1513060648261521520/1513091885441482782/58bae04196329e25ec7a2136db50b729.gif?ex=6a267821&is=6a2526a1&hm=6d2e960336f262a8a39584c397c5b525df1beff5d784c148d0eef3aba355336e&" alt="nature background">
+</div>
+
+<!-- Noise -->
+<div class="noise"></div>
+
+<!-- Floating leaves -->
+<div class="leaf-deco">🍃</div>
+<div class="leaf-deco">🌿</div>
+<div class="leaf-deco">🍂</div>
+<div class="leaf-deco">🌱</div>
+
+<main>
+
+  <!-- Header Card -->
+  <div class="header-card">
+    <div class="badge">outdoor community</div>
+    <h1 class="server-name">𐙚˚࿔ Home𝜗𝜚˚⋆</h1>
+    <p class="tagline">
+      พื้นที่เงียบๆ ท่ามกลางธรรมชาติ<br>
+      สำหรับคนที่อยากหาที่พักใจ 🌾
+    </p>
+  </div>
+
+  <!-- Feature chips -->
+  <div class="features">
+    <div class="feature-chip">🌲 Outdoor vibes</div>
+    <div class="feature-chip">☕ พูดคุยสบายๆ</div>
+    <div class="feature-chip">🌸 ธรรมชาติ</div>
+    <div class="feature-chip">🎵 เพลง & ชิล</div>
+  </div>
+
+  <!-- Discord Join Button -->
+  <div class="join-wrap">
+    <a href="https://discord.gg/Z25zxbFfK" target="_blank" class="discord-btn pulse-ring">
+      <!-- Discord SVG logo -->
+      <svg class="discord-logo" viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#fff" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+      </svg>
+      <div class="btn-text-wrap">
+        <span class="btn-sub">คลิกเพื่อ</span>
+        <span class="btn-main">เข้าร่วม Server</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- Online indicator -->
+  <div class="online-indicator">
+    <div class="dot"></div>
+    <span>เปิดรับสมาชิกใหม่ตลอดเวลา</span>
+  </div>
+
+</main>
+
+<footer>𐙚˚ Home · outdoor discord community ˚⋆</footer>
+
+</body>
+</html>
